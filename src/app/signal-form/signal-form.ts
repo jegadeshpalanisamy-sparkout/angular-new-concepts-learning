@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { LoginData } from '../interfaces/form-interfaces/form.interfece';
-import { form, FormField } from '@angular/forms/signals';
+import { email, form, FormField, required, schema } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-signal-form',
@@ -16,7 +16,11 @@ export class SignalForm {
   });
 
 //step 2: create a form signal using the form function and pass the loginModal signal to it
-  loginForm = form(this.loginModal);
+  loginForm = form(this.loginModal,(schemaPath) => {
+    required(schemaPath.email,{message: 'Email is required'});
+    email(schemaPath.email,{message: 'Email is invalid'});
+    required(schemaPath.password,{message: 'Password is required'});    
+  });
 
 //step 3: create a method to handle form submission
   onSubmit() {
