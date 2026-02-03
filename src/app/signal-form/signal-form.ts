@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { LoginData } from '../interfaces/form-interfaces/form.interfece';
-import { email, form, FormField, required, schema } from '@angular/forms/signals';
+import { email, form, FormField, maxLength, minLength, required, schema } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-signal-form',
@@ -20,6 +20,8 @@ export class SignalForm {
     required(schemaPath.email,{message: 'Email is required'});
     email(schemaPath.email,{message: 'Email is invalid'});
     required(schemaPath.password,{message: 'Password is required'});    
+    minLength(schemaPath.password,8,{message: 'Password must be at least 8 characters'});
+    maxLength(schemaPath.password,20,{message: 'Password must be at most 20 characters'});
   });
 
 //step 3: create a method to handle form submission
