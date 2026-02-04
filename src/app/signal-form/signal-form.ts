@@ -9,6 +9,9 @@ import { email, form, FormField, maxLength, minLength, required, schema } from '
   styleUrl: './signal-form.css',
 })
 export class SignalForm {
+
+  isInbuildClassForStyling = signal(true);
+
 //step 1: create a signal to hold the form data
   loginModal = signal<LoginData> ({
     email: '',
